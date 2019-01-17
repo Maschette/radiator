@@ -32,7 +32,8 @@ Imports:
     stringi,
     tibble,
     tidyr,
-    utils
+    utils, 
+    sys
 Suggests:
     adegenet,
     BiocManager,

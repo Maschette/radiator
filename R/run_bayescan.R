@@ -653,7 +653,8 @@ bayescan_one <- function(
   } else {
     path.folder.subsample <- path.folder
   }
-  output.folder <- stringi::stri_join("-od ", path.folder.subsample)
+  #output.folder<-'-od .'
+  output.folder <- stringi::stri_join('-od ', sys::windows_quote(path.folder.subsample),sep = "")
   # output.folder <- path.folder.subsample
 
   log.file <- stringi::stri_join(path.folder.subsample, "/radiator_bayescan_", file.date,".log")
@@ -729,8 +730,11 @@ bayescan_one <- function(
   # command --------------------------------------------------------------------
   #command.arguments <- paste(new.data, output.folder, all.trace, parallel.core, n, thin, nbp, pilot, burn, pr.odds)
 
-  command.arguments <- paste0('"',new.data,'"', ' "',output.folder,'" ', all.trace," ",parallel.core," ",  n," ", thin," ", nbp," ", pilot," ", burn," ", pr.odds)
-  system2(
+  command.arguments <- paste0('"',new.data,'"', ' ',output.folder,' ', all.trace," ",parallel.core," ",  n," ", thin," ", nbp," ", pilot," ", burn," ", pr.odds)
+
+  print(command.arguments)
+
+    system2(
     command = bayescan.path,
     args = command.arguments,
     stderr = log.file, stdout = log.file
