@@ -727,8 +727,9 @@ bayescan_one <- function(
   }
   pop.dic.file <- markers.dic.file <- bayescan.sub <- NULL
   # command --------------------------------------------------------------------
-  command.arguments <- paste(new.data, output.folder, all.trace, parallel.core, n, thin, nbp, pilot, burn, pr.odds)
+  #command.arguments <- paste(new.data, output.folder, all.trace, parallel.core, n, thin, nbp, pilot, burn, pr.odds)
 
+  command.arguments <- paste0('"',new.data,'"', ' "',output.folder,'" ', all.trace," ",parallel.core," ",  n," ", thin," ", nbp," ", pilot," ", burn," ", pr.odds)
   system2(
     command = bayescan.path,
     args = command.arguments,
